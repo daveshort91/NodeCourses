@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 
-const {Pool} = require("pg");
+// const {Pool} = require("pg");
 
 app.set("port", (process.env.PORT || 3000));
 

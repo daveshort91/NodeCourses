@@ -1,4 +1,5 @@
-CREATE TABLE users_types(
+CREATE TABLE users_types
+(
   id SERIAL PRIMARY KEY NOT NULL,
   type VARCHAR(100)
 );
@@ -17,3 +18,18 @@ INSERT INTO users_types(type) VALUES ('student');
 CREATE USER nodecourseuser WITH PASSWORD 'passpass';
 
 GRANT SELECT, INSERT, UPDATE ON users TO nodecourseuser;
+
+CREATE TABLE courses
+(
+  id SERIAL PRIMARY KEY NOT NULL,
+  title VARCHAR(256) NOT NULL,
+  description VARCHAR(500) NOT NULL,
+  instructor INT NOT NULL REFERENCES users(id)
+);
+
+CREATE TABLE users_courses
+(
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INT NOT NULL REFERENCES users(id),
+  course_id INT NOT NULL REFERENCES courses(id)
+);
