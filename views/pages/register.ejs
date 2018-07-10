@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Registration</title>
+  <% include ../partials/header.ejs %>
+</head>
+<body>
+
+  <% include ../partials/navbar.ejs %>
+
+  <br>
+
+  <form action="/addUser" method="get">
+    Name:
+    <input type="text" name="first_name" value="First"></input>
+    <input type="text" name="last_name" value="Last"></input><br>
+    Account Type:
+    <input type="radio" name="user_type" value="Student">Student</input>
+    <input type="radio" name="user_type" value="instructor">Instructor</input><br>
+    <input type="submit" value="Sign me up"/>
+  </form>
+
+
+</body>
+</html>
