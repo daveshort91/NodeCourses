@@ -1,6 +1,35 @@
 var express = require("express");
-const path = require('path')
 var app = express();
+
+const path = require('path');
+
+
+const pg = require('pg');
+const pool = new pg.Pool({
+  user: 'nodecourseuser',
+  host: 'localhost',
+  database: 'nodecourses',
+  password: 'passpass',
+  port: '5432'});
+
+pool.query("SELECT NOW()", (err, res) => {
+    console.log(err, res);
+    pool.end();
+});
+
+
+
+//you can supply a custom client constructor
+//if you want to use the native postgres client
+// var NativeClient = require('pg').native.Client;
+// var nativePool = new Pool({ Client: NativeClient })
+
+//you can even pool pg-native clients directly
+// var PgNativeClient = require('pg-native');
+// var pgNativePool = new Pool({ Client: PgNativeClient })
+
+
+
 
 // const {Pool} = require("pg");
 app.use(express.static(path.join(__dirname, 'public')))
@@ -15,6 +44,7 @@ app.get("/registerUser", (req, res) => res.render('pages/register'));
 app.get("/registerCourse", registerCourse);
 app.get("/course", course);
 app.get("/myCourses", myCourses);
+app.get("/addUser", addUser);
 
 app.listen(app.get("port"), function(){
   console.log("Listening on port:", app.get("port"));
@@ -30,6 +60,10 @@ function addCourse(req, res) {
 
 function registerUser(req, res) {
   console.log("register a user");
+}
+
+function addUser(req, res) {
+
 }
 
 function registerCourse(req, res) {
